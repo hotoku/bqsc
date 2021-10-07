@@ -1,3 +1,4 @@
+from _typeshed import SupportsRead
 from typing import Type, Union
 from pathlib import Path
 import re
@@ -21,9 +22,10 @@ def load(s: Union[str, Path]) -> Type:
     return loads(content, name)
 
 
-def loads(s: str, name: str) -> Type:
+def loads(s: str, name: str) -> type:
     obj = json.loads(s)
     cols = [
-        ColumnInfo(d) for d in obj
+        ColumnInfo.create(d) for d in obj
     ]
-    return TableInfo(name, cols)
+    tinfo = TableInfo(name, cols)
+    return type("hoge", (object,), {})

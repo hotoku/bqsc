@@ -1,2 +1,10 @@
+from dataclasses import dataclass
+from typing import Sequence
+
+from .column_info import ColumnInfo
+
+
+@dataclass
 class TableInfo:
-    pass
+    name: str
+    columns: Sequence[ColumnInfo]
