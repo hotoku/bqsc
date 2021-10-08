@@ -1,4 +1,3 @@
-from _typeshed import SupportsRead
 from typing import Type, Union
 from pathlib import Path
 import re
