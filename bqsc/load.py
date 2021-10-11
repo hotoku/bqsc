@@ -5,6 +5,7 @@ import json
 
 from .column_info import ColumnInfo
 from .table_info import TableInfo
+from .table import Table
 
 
 def snake_to_camel(s: str) -> str:
@@ -21,10 +22,10 @@ def load(s: Union[str, Path]) -> Type:
     return loads(content, name)
 
 
-def loads(s: str, name: str) -> type:
+def loads(s: str, name: str) -> Table:
     obj = json.loads(s)
     cols = [
         ColumnInfo.create(d) for d in obj
     ]
-    tinfo = TableInfo(name, cols)
-    return type("hoge", (object,), {})
+    table = Table(cols)
+    return table
