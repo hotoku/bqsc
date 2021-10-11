@@ -1,4 +1,5 @@
 from typing import Dict, Iterable, Any
+from datetime import date, datetime, time
 
 from .column_info import ColumnInfo
 
@@ -8,7 +9,10 @@ class TableInfo:
         "string": str,
         "integer": int,
         "float": float,
-        "boolean": bool
+        "boolean": bool,
+        "date": date,
+        "datetime": datetime,
+        "time": time
     }
 
     def __init__(self, cinfos: Iterable[ColumnInfo]) -> None:

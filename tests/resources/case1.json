@@ -16,5 +16,23 @@
     "name": "value",
     "type": "float",
     "mode": "nullable"
+  },
+  {
+    "description": "datetime",
+    "name": "datetime",
+    "type": "DATETIME",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "date",
+    "name": "date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "time",
+    "name": "time",
+    "type": "TIME",
+    "mode": "REQUIRED"
   }
 ]
