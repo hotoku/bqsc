@@ -1,10 +1,9 @@
-from typing import Sequence, Type, Union
+from typing import Type, Union
 from pathlib import Path
 import re
 import json
 
 from .column_info import ColumnInfo
-from .table_info import TableInfo
 from .table import Table
 
 
