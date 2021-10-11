@@ -21,7 +21,7 @@ def load(s: Union[str, Path]) -> Type:
     return loads(content, name)
 
 
-def loads(s: str, name: str) -> type:
+def loads(s: str, name: str) -> Type:
     obj = json.loads(s)
     cols = [
         ColumnInfo.create(d) for d in obj
