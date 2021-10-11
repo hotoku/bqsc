@@ -2,15 +2,18 @@ import bqsc
 from bqsc.table import NotDefinedColumn, TypeMismatch
 
 
+Case1 = bqsc.load("tests/resources/case1.json")
+
+
 def test_set():
-    table = bqsc.load("tests/resources/case1.json")
+    table = Case1()
     table.id = [1, 2]
     table.name = ["dog", "cat"]
     table.value = [1.1, 2.2]
 
 
 def test_mismatch():
-    table = bqsc.load("tests/resources/case1.json")
+    table = Case1()
     try:
         table.id = "a"
         assert False
@@ -31,7 +34,7 @@ def test_mismatch():
 
 
 def test_no_definition():
-    table = bqsc.load("tests/resources/case1.json")
+    table = Case1()
     try:
         table.hoge = "x"
         assert False

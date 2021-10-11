@@ -1,4 +1,4 @@
-from typing import Type, Union
+from typing import Sequence, Type, Union
 from pathlib import Path
 import re
 import json
@@ -22,10 +22,15 @@ def load(s: Union[str, Path]) -> Type:
     return loads(content, name)
 
 
-def loads(s: str, name: str) -> Table:
+def loads(s: str, name: str) -> type:
     obj = json.loads(s)
     cols = [
         ColumnInfo.create(d) for d in obj
     ]
-    table = Table(cols)
-    return table
+
+    def __init__(self):
+        Table.__init__(self, cols)
+
+    return type(name, (Table,), {
+        "__init__": __init__
+    })
