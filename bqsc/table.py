@@ -18,14 +18,10 @@ class TypeMismatch(Exception):
 
 class Table:
     def __init__(self, cinfos: Sequence[ColumnInfo]) -> None:
-        self.table_info_NOSETCHECK = TableInfo(cinfos)
+        super().__setattr__("_table_info", TableInfo(cinfos))
 
     def __setattr__(self, name: str, value: Any) -> None:
-        if re.match(r".+_NOSETCHECK$", name):
-            super().__setattr__(name, value)
-            return
-
-        info = self.table_info_NOSETCHECK
+        info: TableInfo = self._table_info  # type: ignore
         if name not in info.column_names:
             raise NotDefinedColumn(name)
 
@@ -39,3 +35,6 @@ class Table:
             raise TypeMismatch(name, v, info.column_types[name])
 
         super().__setattr__(name, v)
+
+    def _typehint(self) -> str:
+        return type(self).__name__
