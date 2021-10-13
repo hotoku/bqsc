@@ -1,4 +1,4 @@
-from typing import Type, Union
+from typing import Type, TypeVar, Union
 from pathlib import Path
 import re
 import json
@@ -11,7 +11,7 @@ def snake_to_camel(s: str) -> str:
     return "".join([x.title() for x in s.split("_")])
 
 
-def load(s: Union[str, Path]) -> Type:
+def load(s: Union[str, Path]) -> type:
     path = Path(s)
     file = path.as_posix().split("/")[-1]
     body = re.sub(r".json$", "", file)
@@ -21,7 +21,7 @@ def load(s: Union[str, Path]) -> Type:
     return loads(content, name)
 
 
-def loads(s: str, name: str) -> Type:
+def loads(s: str, name: str) -> type:
     obj = json.loads(s)
     cols = [
         ColumnInfo.create(d) for d in obj
