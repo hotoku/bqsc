@@ -1,7 +1,8 @@
 from __future__ import annotations
-from collections import defaultdict
 from typing import Dict
 from dataclasses import dataclass
+
+from .type_map import TYPE_MAP
 
 
 @dataclass(frozen=True)
@@ -18,3 +19,6 @@ class ColumnInfo:
         type = d["type"]
         name = d["name"]
         return cls(description, mode, type, name)
+
+    def _typehint(self) -> str:
+        return self.name + ": " + TYPE_MAP[self.type.lower()].__name__

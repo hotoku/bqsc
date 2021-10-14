@@ -37,4 +37,11 @@ class Table:
         super().__setattr__(name, v)
 
     def _typehint(self) -> str:
-        return type(self).__name__
+        info: TableInfo = self._table_info  # type: ignore
+        ret = f"""
+class {type(self).__name__}:
+"""
+        for col in info.column_infos:
+            ret += "    " + col._typehint() + "\n"
+        ret += "    ..."
+        return ret
