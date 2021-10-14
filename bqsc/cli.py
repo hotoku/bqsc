@@ -16,7 +16,6 @@ def main(pyi_path: Optional[str], json_dir: str):
 from datetime import date, datetime, time
 
 """
-    Sequence
     for js in glob.glob(os.path.join(json_dir, "**.json")):
         Table = load(js)
         table = Table()
