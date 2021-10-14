@@ -1,0 +1,44 @@
+[
+  {
+    "description": "JANコード",
+    "name": "product_code",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "年",
+    "name": "year",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "MD週",
+    "name": "week",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "week_numから数えて何週先の値か",
+    "name": "forward_week_num",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "販売個数",
+    "name": "value",
+    "type": "FLOAT",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "実行ID",
+    "name": "exec_id",
+    "type": "STRING",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "実行日",
+    "name": "exec_date",
+    "type": "DATE",
+    "mode": "REQUIRED"
+  }
+]

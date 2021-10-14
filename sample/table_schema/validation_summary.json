@@ -1,0 +1,98 @@
+[
+    {
+        "description": "実行ID",
+        "name": "exec_id",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "モデル名",
+        "name": "model",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行週（MD週）",
+        "name": "exec_md_week",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "全予測対象SKUでの実行かどうか",
+        "name": "all",
+        "type": "BOOLEAN",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行SKUの予測期間中mapeの平均",
+        "name": "mape_for_model",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行SKUの予測期間中mapeの標準偏差",
+        "name": "mape_std",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行SKUの予測期間中mapeの最小値",
+        "name": "mape_min",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行SKUの予測期間中mapeの第一四分位数",
+        "name": "mape_25per",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行SKUの予測期間中mapeの中央値",
+        "name": "mape_50per",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行SKUの予測期間中mapeの第三四分位数",
+        "name": "mape_75per",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行SKUの予測期間中mapeの最大値",
+        "name": "mape_max",
+        "type": "FLOAT",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行開始時刻",
+        "name": "exec_start",
+        "type": "DATETIME",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行所要時間",
+        "name": "duration",
+        "type": "TIME",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行終了時刻",
+        "name": "exec_end",
+        "type": "DATETIME",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "デバッグのための実行かどうか",
+        "name": "debug",
+        "type": "BOOLEAN",
+        "mode": "REQUIRED"
+    },
+    {
+        "description": "実行時のコミットハッシュ",
+        "name": "commit_hash",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    }
+]

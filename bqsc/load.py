@@ -1,7 +1,9 @@
-from typing import Type, Union
+from typing import Dict, Type, Union
 from pathlib import Path
 import re
 import json
+import glob
+import os
 
 from .table_info import TableInfo
 from .column_info import ColumnInfo
@@ -32,3 +34,10 @@ def loads(s: str, name: str) -> Type[Table]:
     return type(name, (Table,), {
         "_table_info": tinfo
     })
+
+
+def load_dir(json_dir: Union[str, Path]) -> Dict[str, Type[Table]]:
+    ls = [load(js) for js in glob.glob(os.path.join(json_dir, "**.json"))]
+    return {
+        t.__name__: t for t in ls
+    }
