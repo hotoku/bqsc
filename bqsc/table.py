@@ -1,8 +1,7 @@
-from typing import Any, Dict, Iterable, Sequence
-import re
+from typing import Any, Iterable, Union
+
 
 from .table_info import TableInfo
-from .column_info import ColumnInfo
 
 
 class NotDefinedColumn(Exception):
@@ -17,12 +16,10 @@ class TypeMismatch(Exception):
 
 
 class Table:
-    def __init__(self, cinfos: Sequence[ColumnInfo]) -> None:
-        super().__setattr__("_table_info", TableInfo(cinfos))
+    _table_info: TableInfo
 
     def __setattr__(self, name: str, value: Any) -> None:
-        info: TableInfo = self._table_info  # type: ignore
-        if name not in info.column_names:
+        if name not in self._table_info.column_names:
             raise NotDefinedColumn(name)
 
         if isinstance(value, Iterable):
@@ -31,17 +28,16 @@ class Table:
         else:
             v = value
 
-        if not info.type_check(name, v):
-            raise TypeMismatch(name, v, info.column_types[name])
+        if not self._table_info.type_check(name, v):
+            raise TypeMismatch(name, v, self._table_info.column_types[name])
 
         super().__setattr__(name, v)
 
-    def _typehint(self) -> str:
-        info: TableInfo = self._table_info  # type: ignore
+    def _typehint(self) -> str:  # type: ignore
         ret = f"""
 class {type(self).__name__}:
 """
-        for col in info.column_infos:
+        for col in self._table_info.column_infos:
             ret += "    " + col._typehint() + "\n"
         ret += "    ..."
         return ret

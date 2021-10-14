@@ -3,6 +3,7 @@ from pathlib import Path
 import re
 import json
 
+from .table_info import TableInfo
 from .column_info import ColumnInfo
 from .table import Table
 
@@ -27,9 +28,7 @@ def loads(s: str, name: str) -> Type[Table]:
         ColumnInfo.create(d) for d in obj
     ]
 
-    def __init__(self):
-        Table.__init__(self, cols)
-
+    tinfo = TableInfo(cols)
     return type(name, (Table,), {
-        "__init__": __init__
+        "_table_info": tinfo
     })

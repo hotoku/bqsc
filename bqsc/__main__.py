@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Sequence, Union
 import glob
 import os
 
@@ -12,9 +12,11 @@ from .load import load
 @click.option("--pyi_path", type=click.Path(file_okay=False, writable=True))
 @click.argument("json_dir", type=click.Path(file_okay=False, readable=True))
 def main(pyi_path: Optional[str], json_dir: str):
-    ret = """from datetime import date, datetime, time
+    ret = """from typing import Sequence, Union
+from datetime import date, datetime, time
 
 """
+    Sequence
     for js in glob.glob(os.path.join(json_dir, "**.json")):
         Table = load(js)
         table = Table()
