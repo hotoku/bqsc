@@ -32,7 +32,7 @@ class Table:
         if not self._table_info.type_check(name, v):
             raise TypeMismatch(name, v, self._table_info.column_types[name])
 
-        super().__setattr__(name, v)
+        super().__setattr__(name, value)
 
 
 def typehint(table: Table) -> str:
@@ -43,3 +43,12 @@ class {type(table).__name__}:
         ret += "    " + col.typehint() + "\n"
     ret += "    ..."
     return ret
+
+
+def dataframe(table: Table) -> pd.DataFrame:
+    info = table._table_info
+    dic = {
+        col.name: table.__getattribute__(col.name)
+        for col in info.column_infos
+    }
+    return pd.DataFrame(dic)

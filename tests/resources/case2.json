@@ -1,0 +1,20 @@
+[
+  {
+    "description": "id",
+    "name": "id",
+    "type": "INTEGER",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "value",
+    "name": "value",
+    "type": "FLOAT",
+    "mode": "REQUIRED"
+  },
+  {
+    "description": "label",
+    "name": "label",
+    "type": "STRING",
+    "mode": "nullable"
+  }
+]
