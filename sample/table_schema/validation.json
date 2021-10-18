@@ -1,6 +1,6 @@
 [
   {
-    "description": "JANコード",
+    "description": "商品コード",
     "name": "product_code",
     "type": "INTEGER",
     "mode": "REQUIRED"
@@ -12,7 +12,7 @@
     "mode": "REQUIRED"
   },
   {
-    "description": "MD週",
+    "description": "週",
     "name": "week",
     "type": "INTEGER",
     "mode": "REQUIRED"
@@ -24,21 +24,21 @@
     "mode": "REQUIRED"
   },
   {
-    "description": "実績値か予測値か",
+    "description": "予測値、実績値のどちらか",
     "name": "type",
-    "type": "STRING",
+    "type": "string",
     "mode": "REQUIRED"
   },
   {
-    "description": "販売個数（実績値or予測値）",
+    "description": "予測値 or 実績値",
     "name": "value",
     "type": "FLOAT",
     "mode": "REQUIRED"
   },
   {
-    "description": "実行ID",
+    "description": "計算ID",
     "name": "exec_id",
-    "type": "STRING",
+    "type": "string",
     "mode": "REQUIRED"
   }
 ]
