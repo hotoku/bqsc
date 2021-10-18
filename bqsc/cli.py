@@ -13,7 +13,7 @@ from .load import load
 @click.argument("json_dir", type=click.Path(file_okay=False, readable=True))
 def main(json_dir: str):
     ret = """from typing import Sequence, Union
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timedelta
 
 from bqsc import Table
 """
