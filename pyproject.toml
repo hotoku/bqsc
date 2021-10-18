@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bqsc"
-version = "2.0.0"
+version = "2.0.1"
 description = "Define schema object from bigquery schema definition json file"
 authors = ["Yasunori Horikoshi <hotoku@users.noreply.github.com>"]
 license = "MIT"
