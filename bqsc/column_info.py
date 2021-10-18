@@ -20,6 +20,6 @@ class ColumnInfo:
         name = d["name"]
         return cls(description, mode, type, name)
 
-    def _typehint(self) -> str:
+    def typehint(self) -> str:
         name = TYPE_MAP[self.type.lower()].__name__
         return f"{self.name}: Union[{name}, Sequence[{name}]]"

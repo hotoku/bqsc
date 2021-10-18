@@ -1,5 +1,6 @@
-from typing import Any, Iterable, Union
+from typing import Any, Iterable
 
+import pandas as pd
 
 from .table_info import TableInfo
 
@@ -33,11 +34,12 @@ class Table:
 
         super().__setattr__(name, v)
 
-    def _typehint(self) -> str:  # type: ignore
-        ret = f"""
-class {type(self).__name__}:
+
+def typehint(table: Table) -> str:
+    ret = f"""
+class {type(table).__name__}:
 """
-        for col in self._table_info.column_infos:
-            ret += "    " + col._typehint() + "\n"
-        ret += "    ..."
-        return ret
+    for col in table._table_info.column_infos:
+        ret += "    " + col.typehint() + "\n"
+    ret += "    ..."
+    return ret
