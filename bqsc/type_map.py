@@ -1,5 +1,5 @@
 from typing import Dict
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timedelta
 
 
 TYPE_MAP: Dict[str, type] = {
@@ -9,5 +9,6 @@ TYPE_MAP: Dict[str, type] = {
     "boolean": bool,
     "date": date,
     "datetime": datetime,
-    "time": time
+    "time": time,
+    "interval": timedelta
 }

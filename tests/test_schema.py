@@ -1,4 +1,4 @@
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timedelta
 import bqsc
 from bqsc.table import NotDefinedColumn, TypeMismatch
 
@@ -14,6 +14,7 @@ def test_set():
     table.datetime = [datetime(2020, 1, 1), datetime(2020, 1, 2)]
     table.date = [date(2020, 1, 1), date(2020, 1, 2)]
     table.time = [time(0, 0, 1), time(0, 0, 2)]
+    table.timedelta = [timedelta(days=1), timedelta(days=2)]
 
 
 def test_mismatch():
@@ -48,6 +49,11 @@ def test_mismatch():
 
     try:
         table.time = "a"
+    except TypeMismatch:
+        pass
+
+    try:
+        table.timedelta = "a"
     except TypeMismatch:
         pass
 

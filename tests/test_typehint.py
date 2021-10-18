@@ -17,6 +17,7 @@ class Case1(Table):
     datetime: Union[datetime, Sequence[datetime]]
     date: Union[date, Sequence[date]]
     time: Union[time, Sequence[time]]
+    timedelta: Union[timedelta, Sequence[timedelta]]
     ...
 """
     act = typehint(case1)

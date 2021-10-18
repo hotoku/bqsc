@@ -34,5 +34,11 @@
     "name": "time",
     "type": "TIME",
     "mode": "REQUIRED"
+  },
+  {
+    "description": "timedelta",
+    "name": "timedelta",
+    "type": "INTERVAL",
+    "mode": "REQUIRED"
   }
 ]
