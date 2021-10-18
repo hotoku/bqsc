@@ -10,7 +10,7 @@ Case1 = bqsc.load("tests/resources/case1.json")
 def test_hint():
     case1 = Case1()
     exp = """
-class Case1:
+class Case1(Table):
     id: Union[int, Sequence[int]]
     name: Union[str, Sequence[str]]
     value: Union[float, Sequence[float]]

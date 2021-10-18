@@ -15,6 +15,7 @@ def main(json_dir: str):
     ret = """from typing import Sequence, Union
 from datetime import date, datetime, time
 
+from bqsc import Table
 """
     for js in glob.glob(os.path.join(json_dir, "**.json")):
         Table = load(js)

@@ -37,7 +37,7 @@ class Table:
 
 def typehint(table: Table) -> str:
     ret = f"""
-class {type(table).__name__}:
+class {type(table).__name__}(Table):
 """
     for col in table._table_info.column_infos:
         ret += "    " + col.typehint() + "\n"
