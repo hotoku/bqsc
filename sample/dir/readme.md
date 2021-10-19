@@ -23,11 +23,11 @@ globals().update(bqsc.load_dir("./table_schema"))
 
 
 ```shell
-$ bqsc table_scheam > table_schema.pyi
+$ bqsc dir table_scheam > table_schema.pyi
 ```
 
 
-`bqsc`コマンドに、スキーマjsonが入っているディレクトリを渡すと、型定義を吐き出してくれるので、**.pyi`ファイルとして保存する。
+`bqsc dir`コマンドに、スキーマjsonが入っているディレクトリを渡すと、型定義を吐き出してくれるので、**.pyi`ファイルとして保存する。
 
 
 #### **3** 型のサポートを受けながらコードを書く
