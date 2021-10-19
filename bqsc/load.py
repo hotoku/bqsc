@@ -1,13 +1,19 @@
-from typing import Dict, Type, Union
+from typing import Dict, Optional, Type, Union
 from pathlib import Path
 import re
 import json
 import glob
 import os
+import subprocess as sp
+from io import StringIO
+import logging
+
 
 from .table_info import TableInfo
 from .column_info import ColumnInfo
 from .table import Table
+
+LOGGER = logging.getLogger(__name__)
 
 
 def snake_to_camel(s: str) -> str:
@@ -22,6 +28,29 @@ def load(s: Union[str, Path]) -> Type[Table]:
     with open(path) as fp:
         content = "".join(fp.readlines())
     return loads(content, name)
+
+
+def load_bq(project: Optional[str], dataset: str, table: str) -> Type[Table]:
+    cmd = [
+        "bq", "show"
+    ]
+    if project is not None:
+        cmd += [f"--project_id={project}"]
+    cmd += [
+        "--schema",
+        f"--format=prettyjson",
+        f"{dataset}.{table}"
+    ]
+    ret = sp.run(
+        cmd,
+        text=True,
+        stdout=sp.PIPE,
+        stderr=sp.PIPE
+    )
+    if ret.returncode != 0:
+        raise RuntimeError(
+            f"command: {' '.join(cmd)} failed. stdout={ret.stdout}, stderr={ret.stderr}")
+    return loads(ret.stdout, snake_to_camel(table))
 
 
 def loads(s: str, name: str) -> Type[Table]:
