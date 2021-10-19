@@ -4,43 +4,49 @@
 ## 手順
 
 
-#### **1** スキーマjsonから、クラス定義を生成する
+#### **1** テーブル名から、スキーマを作る
 
 
 ```python
 import bqsc
 
 
+GithubTimeline = bqsc.load_bq(
+    "bigquery-public-data",
+    "samples",
+    "github_timeline"
+)
 ```
 
 
-`bqsc.load_dir`に、スキーマjsonが入っているディレクトリを渡すと、各スキーマを表現したクラスを作ってくれる。
-そのクラスを、`globals(**`に代入して、モジュールに登録する。
+`bqsc.load_bq`に、プロジェクト名・データセット名・テーブル名を渡すとテーブルクラスを作成します。
 
 
-#### **2** スキーマjsonから、型アノテーションを生成する
+#### **2** テーブル名から、型アノテーションを作成する
 
 
 ```shell
-$ bqsc dir table_scheam > table_schema.pyi
+$ bqsc bq bigquery-public-data:samples.github_timeline > table_schema.py
 ```
 
 
-`bqsc dir`コマンドに、スキーマjsonが入っているディレクトリを渡すと、型定義を吐き出してくれるので、**.pyi`ファイルとして保存する。
+`bqsc bq`コマンドに、 `プロジェクト名:データセット名.テーブル名`を渡すと、型アノテーション文字列を表示するので、適当なファイルに保存します。
 
 
 #### **3** 型のサポートを受けながらコードを書く
 
 
 ```python
-import table_schema as ts
+from table_schema import GithubTimeline
 
 
-pred = ts.Prediction()
-pred.exec_id = [1, 2, 3]  # => TypeMismatch exception
+gt = GithubTimeline()
+
+
+gt.actor = "actor"
+gt.actor_attributes_blog = 1  # raise TypeMismatch
 ```
 
 
-クラスを定義したファイルをインポートして利用する。
-列名の補完や、型の間違いをLSPなどが指摘してくれるようになる。
-また、型が間違っていると、実行時にエラーになる。
+クラスを定義したファイルをインポートして利用します。
+IDEが、補完や型チェックでサポートしてくれます。
