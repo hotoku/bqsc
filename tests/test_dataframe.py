@@ -25,6 +25,23 @@ def test_dataframe2():
     case2.label = "a"
     try:
         dataframe(case2)
-        assert False, test_dataframe2
+        assert False, "test_dataframe2"
     except ValueError:
         pass
+
+
+def test_required():
+    case2 = Case2()
+
+    try:
+        dataframe(case2)
+        assert False, "test_required"
+    except AttributeError:
+        pass
+
+
+def test_nullable():
+    case2 = Case2()
+    case2.id = [1, 2]
+    case2.value = [1.0, 2.0]
+    dataframe(case2)

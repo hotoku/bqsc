@@ -29,10 +29,15 @@ def loads(s: str, name: str) -> Type[Table]:
     cols = [
         ColumnInfo.create(d) for d in obj
     ]
+    nulls = {
+        col.name: None for col in cols
+        if col.mode.upper() == "NULLABLE"
+    }
 
     tinfo = TableInfo(cols)
     return type(name, (Table,), {
-        "_table_info": tinfo
+        "_table_info": tinfo,
+        **nulls
     })
 
 
