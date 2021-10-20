@@ -30,6 +30,8 @@ from bqsc import Table
 @main.command()
 @click.argument("json_dir", type=click.Path(file_okay=False, readable=True))
 def dir(json_dir: str):
+    if not os.path.isdir(str):
+        raise ValueError(f"{str} is not a directory")
     print_typehint([
         load(js)()
         for js in glob.glob(os.path.join(json_dir, "**.json"))
