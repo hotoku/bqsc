@@ -1,8 +1,7 @@
 from dataclasses import dataclass
-from typing import Iterable, Optional, Sequence, Tuple, Union
+from typing import Iterable, Optional
 import glob
 import os
-from collections import namedtuple
 
 import click
 
@@ -30,7 +29,7 @@ from bqsc import Table
 @main.command()
 @click.argument("json_dir", type=click.Path(file_okay=False, readable=True))
 def dir(json_dir: str):
-    if not os.path.isdir(str):
+    if not os.path.isdir(json_dir):
         raise ValueError(f"{str} is not a directory")
     print_typehint([
         load(js)()
