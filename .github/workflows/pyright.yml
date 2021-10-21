@@ -45,4 +45,4 @@ jobs:
           .github_scripts/slack.sh pyright
           false
         env:
-          SLACK_WEBHOOK_DOR_DS: ${{secrets.SLACK_WEBHOOK_DOR_DS}}
+          SLACK_WEBHOOK_JDSC_ME: ${{secrets.SLACK_WEBHOOK_JDSC_ME}}
