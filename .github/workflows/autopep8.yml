@@ -1,0 +1,26 @@
+name: autopep8
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  autopep8:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: FranzDiebold/github-env-vars-action@v1.3.0
+      - uses: actions/checkout@v2
+      - name: autopep8
+        id: autopep8
+        uses: peter-evans/autopep8@v1
+        with:
+          args: --recursive --diff --exit-code --max-line-length=300 .
+      - name: Fail if autopep8 made changes
+        if: steps.autopep8.outputs.exit-code == 2
+        run: |
+          .github_scripts/slack.sh autopep8
+          false
+        env:
+          SLACK_WEBHOOK_DOR_DS: ${{secrets.SLACK_WEBHOOK_DOR_DS}}

@@ -1,0 +1,48 @@
+name: pyright
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pyright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: FranzDiebold/github-env-vars-action@v1.3.0
+      - uses: actions/checkout@v2
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      - name: Install pyright
+        run: npm i pyright
+      - name: Typecheck
+        id: typecheck
+        run: |
+          .github_scripts/pyright.sh
+      - name: Notify failure of pyright
+        if: steps.typecheck.outputs.exit-code != 0
+        run: |
+          .github_scripts/slack.sh pyright
+          false
+        env:
+          SLACK_WEBHOOK_DOR_DS: ${{secrets.SLACK_WEBHOOK_DOR_DS}}
