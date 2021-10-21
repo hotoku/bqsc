@@ -1,0 +1,1 @@
+hoge: int =       "a"
