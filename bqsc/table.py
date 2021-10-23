@@ -1,5 +1,6 @@
 from typing import Any, Iterable
 
+import numpy as np
 import pandas as pd
 
 from .table_info import TableInfo
@@ -45,10 +46,24 @@ class {type(table).__name__}(Table):
     return ret
 
 
+def is_list_like(v: any) -> bool:
+    if isinstance(v, str):
+        return False
+    else:
+        return isinstance(v, Iterable)
+
+
 def dataframe(table: Table) -> pd.DataFrame:
     info = table._table_info
     dic = {
         col.name: table.__getattribute__(col.name)
         for col in info.column_infos
     }
-    return pd.DataFrame(dic)
+    is_scalar = [
+        not is_list_like(v) for _, v in dic.items()
+    ]
+
+    if np.all(is_scalar):
+        return pd.DataFrame(dic, index=[0])
+    else:
+        return pd.DataFrame(dic)
