@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Type, Union
+from typing import Dict, List, Optional, Type, Union
 from pathlib import Path
 import re
 import json
@@ -75,3 +75,11 @@ def load_dir(json_dir: Union[str, Path]) -> Dict[str, Type[Table]]:
     return {
         t.__name__: t for t in ls
     }
+
+
+Schema = List[Dict[str, str]]
+
+
+def read_schema_file(file_path: Union[str, Path]) -> Schema:
+    with open(str(file_path)) as f:
+        return json.load(f)

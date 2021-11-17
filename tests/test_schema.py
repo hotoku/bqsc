@@ -65,3 +65,11 @@ def test_no_definition():
         assert False
     except NotDefinedColumn:
         pass
+
+
+def test_read():
+    schema = bqsc.read_schema_file("tests/resources/case1.json")
+    assert len(schema) == 7
+    names = set(d["name"] for d in schema)
+    assert names == set(["id", "name", "value", "datetime",
+                         "date", "time", "timedelta"])

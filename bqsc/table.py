@@ -47,7 +47,7 @@ class {type(table).__name__}(Table):
     return ret
 
 
-def is_list_like(v: any) -> bool:
+def is_list_like(v: Any) -> bool:
     if isinstance(v, str):
         return False
     else:
