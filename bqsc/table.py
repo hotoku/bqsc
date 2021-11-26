@@ -14,7 +14,7 @@ class NotDefinedColumn(Exception):
 class TypeMismatch(Exception):
     def __init__(self, name: str, value: Any, expected: type) -> None:
         super().__init__(
-            f"column: {name}, expected: {expected}, given: {value}")
+            f"column: {name}, expected: {expected}, given: {value} ({type(value)})")
 
 
 class Table:
