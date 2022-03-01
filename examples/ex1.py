@@ -19,7 +19,7 @@ schema = [
 MyTable = bqsc.from_schema(schema, "MyTable")
 table = MyTable()
 
-table.col_str = ["a", "b", "c"]
+table.col_str = [1, 2, 3]
 table.col_int = [0, 1, 2]
 table.col_float = [1.1, 1.2, 1.3]
 
