@@ -24,8 +24,9 @@ class Table:
         if name not in self._table_info.column_names:
             raise NotDefinedColumn(name)
 
-        # todo: when value is str, this branching fails
-        if isinstance(value, Iterable):
+        if isinstance(value, str):
+            v = value
+        elif isinstance(value, Iterable):
             it = iter(value)
             v = next(it)
         else:
