@@ -1,0 +1,14 @@
+[
+  {
+    "name": "col_str",
+    "type": "string"
+  },
+  {
+    "name": "col_int",
+    "type": "int64"
+  },
+  {
+    "name": "col_float",
+    "type": "float64"
+  }
+]
