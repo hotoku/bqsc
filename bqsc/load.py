@@ -55,12 +55,12 @@ def load_bq(project: Optional[str], dataset: str, table: str) -> Type[Table]:
 
 def loads(s: str, name: str) -> Type[Table]:
     obj = json.loads(s)
-    return from_schema(obj)
+    return from_schema(obj, name)
 
 
-def from_schema(dic: Dict[str, Dict[str, str]]) -> Type[Table]:
+def from_schema(ls: List[Dict[str, str]], name) -> Type[Table]:
     cols = [
-        ColumnInfo.create(d) for d in dic
+        ColumnInfo.create(d) for d in ls
     ]
     nulls = {
         col.name: None for col in cols

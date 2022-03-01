@@ -5,7 +5,8 @@ from .load import (
     loads as loads,
     load_dir as load_dir,
     load_bq as load_bq,
-    read_schema_file as read_schema_file
+    read_schema_file as read_schema_file,
+    from_schema as from_schema
 )
 from .table import (
     Table as Table,
