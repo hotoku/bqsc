@@ -4,6 +4,7 @@ from .load import (
     load as load,
     loads as loads,
     load_dir as load_dir,
+    load_file as load_file,
     load_bq as load_bq,
     read_schema_file as read_schema_file,
     from_schema as from_schema

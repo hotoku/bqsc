@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Type, Union
+from typing import Dict, List, Optional, TextIO, Type, Union
 from pathlib import Path
 import re
 import json
@@ -20,14 +20,18 @@ def snake_to_camel(s: str) -> str:
     return "".join([x.title() for x in s.split("_")])
 
 
-def load(s: Union[str, Path]) -> Type[Table]:
+def load(fp: TextIO, name: str) -> Type[Table]:
+    content = "".join(fp.readlines())
+    return loads(content, name)
+
+
+def load_file(s: Union[str, Path]) -> Type[Table]:
     path = Path(s)
     file = path.as_posix().split("/")[-1]
     body = re.sub(r".json$", "", file)
     name = snake_to_camel(body)
     with open(path) as fp:
-        content = "".join(fp.readlines())
-    return loads(content, name)
+        return load(fp, name)
 
 
 def load_bq(project: Optional[str], dataset: str, table: str) -> Type[Table]:

@@ -4,7 +4,7 @@ import bqsc
 from bqsc.table import typehint
 
 
-Case1 = bqsc.load("tests/resources/case1.json")
+Case1 = bqsc.load_file("tests/resources/case1.json")
 
 
 def test_hint():

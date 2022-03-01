@@ -4,7 +4,7 @@ import bqsc
 from bqsc.table import dataframe
 
 
-Case2 = bqsc.load("tests/resources/case2.json")
+Case2 = bqsc.load_file("tests/resources/case2.json")
 
 
 def test_dataframe():
