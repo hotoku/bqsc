@@ -6,7 +6,7 @@ import os
 import click
 
 from .table import Table, typehint
-from .load import load, load_bq
+from .load import load, load_bq, load_file
 
 
 @click.group()
@@ -32,7 +32,7 @@ def dir(json_dir: str):
     if not os.path.isdir(json_dir):
         raise ValueError(f"{json_dir} is not a directory")
     print_typehint([
-        load(js)()
+        load_file(js)()
         for js in glob.glob(os.path.join(json_dir, "**.json"))
     ])
 
