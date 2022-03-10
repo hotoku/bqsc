@@ -79,7 +79,7 @@ def from_schema(ls: List[Dict[str, str]], name) -> Type[Table]:
 
 
 def load_dir(json_dir: Union[str, Path]) -> Dict[str, Type[Table]]:
-    ls = [load(js) for js in glob.glob(os.path.join(json_dir, "**.json"))]
+    ls = [load_file(js) for js in glob.glob(os.path.join(json_dir, "**.json"))]
     return {
         t.__name__: t for t in ls
     }
