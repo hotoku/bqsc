@@ -14,6 +14,8 @@ When it detects mistakes, it immediately raises an error and we can know what ex
 
 ## Examples
 
+These examples are in [examples](./examples) directory.
+
 ### case 1: from a list of dictionaries.
 ```python
 import bqsc
