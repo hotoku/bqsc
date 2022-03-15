@@ -33,8 +33,7 @@ import bqsc
 globals().update(bqsc.load_dir("./jsons"))
 ```
 
-This may not look like implementing a class. Please read my [another story](This may not look like implementing a class. Please read my another story in medium.com for how it works
-) in medium.com for how it works
+This may not look like implementing a class. Please read my [another story](https://medium.com/@hotoku/automatically-generate-type-information-from-bigquery-schema-4beaa53d8d3d) in medium.com for how it works
 
 ## coding with type stubs
 
