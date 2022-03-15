@@ -14,7 +14,7 @@ When it detects mistakes, it immediately raises an error and we can know what ex
 
 ## Examples
 
-### Example 1: from a list of dictionaries.
+### case 1: from a list of dictionaries.
 ```python
 import bqsc
 import pandas as pd
@@ -49,7 +49,7 @@ df.to_gbq(
 )
 ```
 
-### Example 2: from a JSON file.
+### case 2: from a JSON file.
 ```python
 import bqsc
 import pandas as pd
@@ -90,5 +90,5 @@ Note that:
 1. it designates exact lines where the mistake exists
 2. it shows how it is mistake
 
-## todo:
-- [ ] Write example usage with typehints
+## Use with type hints
+[Examples2](./examples2) contains use cases with type hints.
