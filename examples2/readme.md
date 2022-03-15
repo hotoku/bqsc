@@ -1,3 +1,5 @@
+# Developing with type hints
+
 ## generating type stub.
 
 In this directory, there is a type stub `schemas.pyi`
@@ -31,7 +33,8 @@ import bqsc
 globals().update(bqsc.load_dir("./jsons"))
 ```
 
-This may not look like implementing a class. Please read my another story in medium.com for how it works
+This may not look like implementing a class. Please read my [another story](This may not look like implementing a class. Please read my another story in medium.com for how it works
+) in medium.com for how it works
 
 ## coding with type stubs
 
